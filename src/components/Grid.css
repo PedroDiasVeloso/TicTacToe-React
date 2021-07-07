@@ -1,0 +1,15 @@
+.column {
+    float:left; 
+}
+
+.displayWinner {
+    position: absolute;
+    left: 200px;
+    top: 75px;
+}
+
+.resetButton {
+    position: absolute;
+    top: 190px;
+    left: 50px;
+}
