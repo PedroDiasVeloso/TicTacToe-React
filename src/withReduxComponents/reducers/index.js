@@ -1,13 +1,7 @@
 import { combineReducers } from "redux";
 
-const playReducer = (content = null, action) => {
 
-    if(action.type === "PLAY"){
-        return action.payload
-    }
 
-    return null
-}
 
 const lastPlayReducer = (lastPlay = null, action) => {
 
@@ -19,23 +13,20 @@ const lastPlayReducer = (lastPlay = null, action) => {
 }
 
 
-const boardUpdateReducer = (board = [], action) => {
+const boardUpdateReducer = (board = Array(9).fill(null), action) => {
+
+    
     if(action.type === "UPDATE_BOARD"){
-        return {
-            play: action.payload.move,
-            position: action.payload.position
-        }
+        board[action.payload.position] = action.payload.move
+        return board
     }
 
-    return null
+    return board
 }
 
-const boardReducer = () => {
-    return Array(9).fill(null)
-}
+
 
 export default combineReducers({
-    content: playReducer,
     board: boardUpdateReducer,
     lastPlay: lastPlayReducer
 })

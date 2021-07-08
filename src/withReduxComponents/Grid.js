@@ -7,12 +7,15 @@ import { updateBoard } from './actions'
 
 const Grid = ({board, updateBoard}) => {
 
+    const[reRender, setReRender] = useState(false)
+
 
     const setBoard = (play, position) => {
         updateBoard(play, position)
-        console.log(board)
+        setReRender(!reRender)
     }
-    
+   
+
     //draws the 9x9 grid
     const makeGrid = () => {
         const grid = []
@@ -20,13 +23,42 @@ const Grid = ({board, updateBoard}) => {
         for (let i = 0; i < 9; i += 3) {
             grid.push(
                 <div className="column">
-                    <Square position={i} saveOnBoard={setBoard} />
-                    <Square position={i+1} saveOnBoard={setBoard} />
-                    <Square position={i+2} saveOnBoard={setBoard} />
+                    <Square whoWon={whoWon(board)} position={i} saveOnBoard={setBoard} />
+                    <Square whoWon={whoWon(board)} position={i+1} saveOnBoard={setBoard} />
+                    <Square whoWon={whoWon(board)} position={i+2} saveOnBoard={setBoard} />
                 </div>)
         }
 
         return grid
+    }
+
+    //detects who won the game
+    const whoWon = (board) => {
+        const winningPossibilities = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [2, 4, 6], [0, 4, 8]
+        ]
+
+        for (let i = 0; i < winningPossibilities.length; i++) {
+
+            if (board[winningPossibilities[i][0]]) {
+
+                if (board[winningPossibilities[i][0]] === board[winningPossibilities[i][1]]) {
+
+                    if (board[winningPossibilities[i][0]] === board[winningPossibilities[i][2]]) {
+
+                        return board[winningPossibilities[i][0]]
+                    }
+                }
+            }
+        }
+        return null
+    }
+
+     //displays the winner
+     const winnerDisplay = (winner) => {
+        if (winner) {
+            return <div>{`The winner is ${winner} !`}</div>
+        }
     }
 
     
@@ -42,7 +74,7 @@ const Grid = ({board, updateBoard}) => {
             </div>
             <div>
                 <h3 className="displayWinner">
-                    
+                {winnerDisplay(whoWon(board))}
                 </h3>
                 <button className="ui button primary resetButton" onClick={resetTheGame}>Reset</button>
             </div>
@@ -58,4 +90,4 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     updateBoard: updateBoard
-})( Grid)
+})(Grid)

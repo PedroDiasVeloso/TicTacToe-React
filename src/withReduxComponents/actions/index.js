@@ -1,10 +1,3 @@
-export const play = (move) => {
-    return {
-        type: "PLAY",
-        payload: move
-    }
-}
-
 export const defineLastPlay = (move) => {
     return {
         type: "LAST_PLAY",

@@ -13,3 +13,9 @@ ReactDOM.render(
     </Provider>,
     document.querySelector("#root")
 )
+
+
+/*ReactDOM.render(
+    <App />,
+    document.querySelector("#root")
+)*/
