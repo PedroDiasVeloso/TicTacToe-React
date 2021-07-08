@@ -1,0 +1,4 @@
+Hello!
+The exercise is done with redux and without redux, to toogle between them just change the comment in src/index.js and src/components/App.js.
+Thanks for your time!
+Pedro Veloso
