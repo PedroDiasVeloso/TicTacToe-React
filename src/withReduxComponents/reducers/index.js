@@ -9,7 +9,7 @@ const lastPlayReducer = (lastPlay = null, action) => {
         return action.payload
     }
 
-    return null
+    return lastPlay
 }
 
 
