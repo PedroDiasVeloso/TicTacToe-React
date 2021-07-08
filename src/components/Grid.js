@@ -5,10 +5,12 @@ import './Grid.css'
 
 const Grid = () => {
 
+    //records last move played
     const [lastPlay, setLastPlay] = useState(null)
+    //records the board
     const [board, setBoard] = useState(Array(9).fill(null))
 
-
+    //sets each play on the board
     const recordLastPlay = (play, position) => {
         const tempBoard = board
 
@@ -19,6 +21,7 @@ const Grid = () => {
         setLastPlay(play)
     }
 
+    //draws the 9x9 grid
     const makeGrid = () => {
         const grid = []
 
@@ -34,6 +37,7 @@ const Grid = () => {
         return grid
     }
 
+    //detects who won the game
     const whoWon = (board) => {
         const winningPossibilities = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [2, 4, 6], [0, 4, 8]
@@ -55,12 +59,14 @@ const Grid = () => {
         return null
     }
 
+    //displays the winner
     const winnerDisplay = (winner) => {
         if (winner) {
             return <div>{`The winner is ${winner} !`}</div>
         }
     }
 
+    //resets the game board
     const resetTheGame = () => {
         window.location.reload()
     }

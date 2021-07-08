@@ -3,8 +3,10 @@ import './Square.css'
 
 const Square = ({ lastPlay, recordLastPlay, position, whoWon }) => {
 
+    //records each square content
     const[content, setContent] = useState(null)
 
+    //displays either X or O depending on the conditions
     const onClick = () => {
 
         if((!lastPlay || lastPlay === "O") && !content && !whoWon){

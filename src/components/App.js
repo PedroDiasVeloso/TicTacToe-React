@@ -1,12 +1,12 @@
 import React from 'react'
 import Grid from './Grid'
-
+import ReduxGrid from '../withReduxComponents/Grid'
 
 const App = () => {
 
     return (
         <div>
-            <Grid />
+            <ReduxGrid />
         </div>
     )
 }
