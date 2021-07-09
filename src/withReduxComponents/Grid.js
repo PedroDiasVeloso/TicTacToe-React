@@ -23,7 +23,7 @@ const Grid = ({board, updateBoard, numberOfPlays, setNumberOfPlays}) => {
 
         for (let i = 0; i < 9; i += 3) {
             grid.push(
-                <div className="column">
+                <div key={i} className="column">
                     <Square whoWon={whoWon(board)} position={i} saveOnBoard={setBoard} />
                     <Square whoWon={whoWon(board)} position={i+1} saveOnBoard={setBoard} />
                     <Square whoWon={whoWon(board)} position={i+2} saveOnBoard={setBoard} />

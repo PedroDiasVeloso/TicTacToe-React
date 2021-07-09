@@ -31,7 +31,7 @@ const Grid = () => {
 
         for (let i = 0; i < 9; i += 3) {
             grid.push(
-                <div className="column">
+                <div key={i} className="column">
                     <Square whoWon={whoWon(board)} position={i} lastPlay={lastPlay} recordLastPlay={recordLastPlay} />
                     <Square whoWon={whoWon(board)} position={i + 1} lastPlay={lastPlay} recordLastPlay={recordLastPlay} />
                     <Square whoWon={whoWon(board)} position={i + 2} lastPlay={lastPlay} recordLastPlay={recordLastPlay} />
