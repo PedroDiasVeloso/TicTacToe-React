@@ -9,6 +9,8 @@ const Grid = () => {
     const [lastPlay, setLastPlay] = useState(null)
     //records the board
     const [board, setBoard] = useState(Array(9).fill(null))
+    //counts the plays
+    const [numberOfPLays, setNumberOfPlays] = useState(0)
 
     //sets each play on the board
     const recordLastPlay = (play, position) => {
@@ -19,6 +21,8 @@ const Grid = () => {
         setBoard(tempBoard)
 
         setLastPlay(play)
+        
+        setNumberOfPlays(numberOfPLays+1)
     }
 
     //draws the 9x9 grid
@@ -59,6 +63,7 @@ const Grid = () => {
         return null
     }
 
+
     //displays the winner
     const winnerDisplay = (winner) => {
         if (winner) {
@@ -80,7 +85,11 @@ const Grid = () => {
                 <h3 className="displayWinner">
                     {winnerDisplay(whoWon(board))}
                 </h3>
+                <h3 className="displayWinner">
+                    {numberOfPLays === 9 && !winnerDisplay(whoWon(board)) ? "Its a Draw!!!" : null}
+                </h3>
                 <button className="ui button primary resetButton" onClick={resetTheGame}>Reset</button>
+                
             </div>
         </div>
 

@@ -24,9 +24,20 @@ const boardUpdateReducer = (board = Array(9).fill(null), action) => {
     return board
 }
 
+const numberOfPlaysReducer = (numberOfPlays = 0, action) => {
+
+    if(action.type === "NUMBER_OF_PLAYS"){
+        numberOfPlays += action.payload
+        return numberOfPlays
+    }
+
+    return numberOfPlays
+}
+
 
 
 export default combineReducers({
     board: boardUpdateReducer,
-    lastPlay: lastPlayReducer
+    lastPlay: lastPlayReducer,
+    numberOfPlays: numberOfPlaysReducer
 })

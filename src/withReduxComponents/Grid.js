@@ -2,16 +2,17 @@ import React, { useState } from 'react'
 import Square from './Square'
 import '../components/Grid.css'
 import { connect } from 'react-redux'
-import { updateBoard } from './actions'
+import { numberOfPlays, updateBoard } from './actions'
 
 
-const Grid = ({board, updateBoard}) => {
+const Grid = ({board, updateBoard, numberOfPlays, setNumberOfPlays}) => {
 
     const[reRender, setReRender] = useState(false)
 
 
     const setBoard = (play, position) => {
         updateBoard(play, position)
+        setNumberOfPlays()
         setReRender(!reRender)
     }
    
@@ -76,6 +77,9 @@ const Grid = ({board, updateBoard}) => {
                 <h3 className="displayWinner">
                 {winnerDisplay(whoWon(board))}
                 </h3>
+                <h3 className="displayWinner">
+                    {numberOfPlays === 9 && !winnerDisplay(whoWon(board)) ? "Its a Draw!!!" : null}
+                </h3>
                 <button className="ui button primary resetButton" onClick={resetTheGame}>Reset</button>
             </div>
         </div>
@@ -85,9 +89,13 @@ const Grid = ({board, updateBoard}) => {
 }
 
 const mapStateToProps = (state) => {
-    return {board: state.board}
+    return {
+        board: state.board,
+        numberOfPlays: state.numberOfPlays
+    }
 }
 
 export default connect(mapStateToProps, {
-    updateBoard: updateBoard
+    updateBoard: updateBoard,
+    setNumberOfPlays: numberOfPlays
 })(Grid)

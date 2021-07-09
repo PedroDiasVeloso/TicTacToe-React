@@ -5,6 +5,13 @@ export const defineLastPlay = (move) => {
     }
 }
 
+export const numberOfPlays = () => {
+    return{
+        type: "NUMBER_OF_PLAYS",
+        payload: 1
+    }
+}
+
 export const updateBoard = (move, position) => {
     return {
         type: "UPDATE_BOARD",
